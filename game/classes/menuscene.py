@@ -1,35 +1,35 @@
 from .scene import Scene
 import pygame
 from .button import Button
+import sys
+#from .keylistener import KeyListener
 
-startButton:Button = Button("START GAME", (500, 600))
+
 
 class MainMenuScene(Scene):
     
     def __init__(self, name, bgImage, audioPath) -> None:
         super().__init__(name, bgImage, audioPath)
-
+        self.init()
+        self.buttons = [Button("START GAME", (500, 500)),Button("QUIT", (580, 600))]
+        self.buttons[0].img_rect.x = self.buttons[0].x
+        self.buttons[0].img_rect.y = self.buttons[0].y
+        self.buttons[1].img_rect.x = self.buttons[1].x
+        self.buttons[1].img_rect.y = self.buttons[1].y
 
     def init(self)->None:
-        #pygame.mouse.set_visible(False)
         pass
-        
-
+       
+    
     def update(self)->None:
-        startButton.update()
+        x, y = pygame.mouse.get_pos()
         self.surface.blit(self.bgImage, (0, 0))
 
-        x, y = pygame.mouse.get_pos()
+        for button in self.buttons:
+            button.update()
+            self.surface.blit(button.image, button.img_rect)
 
         
 
-        if startButton.image.get_rect().collidepoint(x, y):
-            print("yes")
-            startButton.color = (255, 255, 255)
-        else:
-            print("no")
-            startButton.color = (150, 150, 150)    
-
-        self.surface.blit(startButton.image, (startButton.x, startButton.y))
-
+       
         self.surface.blit(pygame.transform.scale(pygame.image.load("mousecursor.png"),(80, 80)), (x, y))
