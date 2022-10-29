@@ -18,7 +18,7 @@ class Window:
         
         Window.surface = pygame.display.set_mode((Window.WIDTH, Window.HEIGHT))
         pygame.display.set_caption("")
-        Window.currentScene = MainMenuScene("main_menu", "scene1.png", "menu1.mp3")
+        Window.currentScene = MainMenuScene("main_menu", Constants.BACKGROUND_IMAGES_PATH + "/scene1.png", Constants.SOUNDS_PATH + "/menu1.mp3")
         
 
     @staticmethod 
@@ -36,7 +36,7 @@ class Window:
 
         if Window.currentScene.name == "main_menu":
             if Window.currentScene.buttons[0].isClicked():
-                Window.changeScene(Level1Scene("level1", "background6.jpg", "level1.ogg"))
+                Window.changeScene(Level1Scene("level1", Constants.BACKGROUND_IMAGES_PATH + "/background6.jpg", Constants.SOUNDS_PATH + "/level1.ogg"))
             elif Window.currentScene.buttons[1].isClicked():
                 sys.exit()
 

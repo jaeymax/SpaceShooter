@@ -11,13 +11,14 @@ class Level1Scene(Scene):
 
     def init(self) -> None:
         global player
-        player = PlayerAircraft("player1", "aircraft1.png", (500, 300))
+        player = PlayerAircraft("player1", Constants.AIRCRAFTS_PATH + "/aircraft1.png", (500, 300))
 
     def update(self) -> None:
         keys = pygame.key.get_pressed()   
         self.surface.blit(self.bgImage, (0, 0))
         player.update(self.surface)
         player.draw(self.surface)
+        player.explosion_animation.show(self.surface, player.img_rect.centerx, player.img_rect.centery)
         for bullet in player.bullets:
             bullet.update()
             bullet.draw(self.surface)    

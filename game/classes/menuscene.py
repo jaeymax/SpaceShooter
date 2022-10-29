@@ -1,3 +1,4 @@
+from game.classes.constants import Constants
 from .scene import Scene
 import pygame
 from .button import Button
@@ -32,4 +33,4 @@ class MainMenuScene(Scene):
         
 
        
-        self.surface.blit(pygame.transform.scale(pygame.image.load("mousecursor.png"),(80, 80)), (x, y))
+        self.surface.blit(pygame.transform.scale(pygame.image.load(Constants.MISC_IMGAES_PATH + "/mousecursor.png"),(80, 80)), (x, y))
